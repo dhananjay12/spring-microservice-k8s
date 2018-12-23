@@ -6,6 +6,7 @@
 	<artifactId>zuul-server</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>zuul-server</name>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Cloud cloud zuul-server</description>
 	
 	<parent>
@@ -30,6 +31,67 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<activation>
+				<property>
+					<name>docker</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>${io.fabric8.docker.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<verbose>true</verbose>
+							<images>
+								<image>
+									<alias>${project.artifactId}</alias>
+									<name>dhananjay12/${project.artifactId}</name>
+									<build>
+										<from>java:8-jre-alpine</from>
+										<entryPoint>
+											<exec>
+												<args>java</args>
+												<args>-jar</args>
+												<args>/maven/${project.artifactId}-${project.version}.jar</args>
+											</exec>
+										</entryPoint>
+										<assembly>
+											<descriptorRef>artifact</descriptorRef>
+										</assembly>
+									</build>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<id>build</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 
 </project>

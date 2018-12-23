@@ -4,5 +4,5 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${SPRING_EUREKA:http://localhost:8761/eureka/}
       

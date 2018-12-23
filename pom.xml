@@ -39,6 +39,8 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+
 	
 	<modules>
 		<module>eureka-server</module>
