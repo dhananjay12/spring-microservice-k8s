@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zuul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: zuul
+  template:
+    metadata:
+      labels:
+        component: zuul
+    spec:
+      containers:
+      - env:
+        - name: SPRING_CLOUD_CONFIG_URI
+        - name: SPRING_EUREKA
+          value: http://eureka:8761/eureka
+        image: dhananjay12/zuul-server:latest
+        name: zuul
+        ports:
+        - containerPort: 8050

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contactus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: contactus
+  template:
+    metadata:
+      labels:
+        component: contactus
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Djava.security.egd=file:/dev/./urandom
+        - name: SPRING_CLOUD_CONFIG_URI
+        - name: SPRING_EUREKA
+          value: http://eureka:8761/eureka
+        - name: SPRING_PROFILES_ACTIVE
+          value: default
+        image: dhananjay12/contact-us-service:latest
+        name: contactus
+        ports:
+        - containerPort: 8080

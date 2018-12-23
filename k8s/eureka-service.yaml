@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: eureka
+  ports:
+  - port: 8761
+    targetPort: 8761
