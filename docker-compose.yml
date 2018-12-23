@@ -1,0 +1,35 @@
+version: "3"
+services:
+  eureka:
+    image: "dhananjay12/eureka-server:latest"
+    environment:
+      - "SPRING_EUREKA=http://eureka:8761/eureka"
+      - "SPRING_CLOUD_CONFIG_URI=${CONFIG_CLIENT_URI}"
+    ports:
+      - "8761:8761"
+  zuul:
+    image: "dhananjay12/zuul-server:latest"
+    environment:
+      - "SPRING_EUREKA=http://eureka:8761/eureka"
+      - "SPRING_CLOUD_CONFIG_URI=${CONFIG_CLIENT_URI}"
+    ports:
+      - "8050:8050"
+  user:
+    image: "dhananjay12/user-service:latest"
+    environment:
+      - "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"
+      - "SPRING_PROFILES_ACTIVE=default"
+      - "SPRING_EUREKA=http://eureka:8761/eureka"
+      - "SPRING_CLOUD_CONFIG_URI=${CONFIG_CLIENT_URI}"
+    ports:
+      - "8100:8100"
+  contactus:
+    image: "dhananjay12/contact-us-service:latest"
+    environment:
+      - "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"
+      - "SPRING_PROFILES_ACTIVE=default"
+      - "SPRING_EUREKA=http://eureka:8761/eureka"
+      - "SPRING_CLOUD_CONFIG_URI=${CONFIG_CLIENT_URI}"
+    ports:
+      - "8080:8080"
+
