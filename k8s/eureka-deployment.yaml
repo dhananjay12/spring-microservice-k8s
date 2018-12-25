@@ -19,5 +19,10 @@ spec:
           value: http://eureka:8761/eureka
         image: dhananjay12/eureka-server:latest
         name: eureka
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         ports:
         - containerPort: 8761

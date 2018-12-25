@@ -23,5 +23,10 @@ spec:
           value: default
         image: dhananjay12/user-service:latest
         name: user
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         ports:
         - containerPort: 8100
