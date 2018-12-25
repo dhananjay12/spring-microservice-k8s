@@ -16,7 +16,7 @@ spec:
       - env:
         - name: SPRING_CLOUD_CONFIG_URI
         - name: SPRING_EUREKA
-          value: http://eureka:8761/eureka
+          value: http://eureka-cluster-ip-service/eureka
         image: dhananjay12/zuul-server:latest
         name: zuul
         resources:
