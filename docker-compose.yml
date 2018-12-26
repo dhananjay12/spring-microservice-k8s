@@ -15,7 +15,7 @@ services:
     image: "dhananjay12/zuul-server:latest"
     environment:
       - "SPRING_EUREKA=http://eureka:8761/eureka"
-      - "SPRING_CLOUD_CONFIG_URI=${http://config:8888}"
+      - "SPRING_CLOUD_CONFIG_URI=http://config:8888"
     ports:
       - "8050:8050"
   user:
@@ -24,7 +24,7 @@ services:
       - "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"
       - "SPRING_PROFILES_ACTIVE=default"
       - "SPRING_EUREKA=http://eureka:8761/eureka"
-      - "SPRING_CLOUD_CONFIG_URI=${http://config:8888}"
+      - "SPRING_CLOUD_CONFIG_URI=http://config:8888"
     ports:
       - "8100:8100"
   contactus:
@@ -33,7 +33,7 @@ services:
       - "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"
       - "SPRING_PROFILES_ACTIVE=default"
       - "SPRING_EUREKA=http://eureka:8761/eureka"
-      - "SPRING_CLOUD_CONFIG_URI=${http://config:8888}"
+      - "SPRING_CLOUD_CONFIG_URI=http://config:8888"
     ports:
       - "8080:8080"
 
