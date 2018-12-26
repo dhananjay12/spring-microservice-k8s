@@ -1,20 +1,20 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: config-server
+  name: configserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: config-server
+      component: configserver
   template:
     metadata:
       labels:
-        component: config-server
+        component: configserver
     spec:
       containers:
         image: dhananjay12/config-server:latest
-        name: config-server
+        name: configserver
         resources:
           requests:
             memory: "256Mi"

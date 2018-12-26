@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    component: dhananjay12/config-server
+    component: configserver
   ports:
   - port: 8888
     targetPort: 8888
