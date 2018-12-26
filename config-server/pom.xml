@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mynotes.k8s</groupId>
+		<artifactId>spring-microservice</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath /> 
+	</parent>
+	
+	<artifactId>config-server</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>config-server</name>
+	<description>Demo project for Spring Boot</description>
+
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<activation>
+				<property>
+					<name>docker</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>${io.fabric8.docker.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<verbose>true</verbose>
+							<images>
+								<image>
+									<alias>${project.artifactId}</alias>
+									<name>dhananjay12/${project.artifactId}</name>
+									<build>
+										<from>java:8-jre-alpine</from>
+										<entryPoint>
+											<exec>
+												<args>java</args>
+												<args>-jar</args>
+												<args>/maven/${project.artifactId}-${project.version}.jar</args>
+											</exec>
+										</entryPoint>
+										<assembly>
+											<descriptorRef>artifact</descriptorRef>
+										</assembly>
+									</build>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<id>build</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
