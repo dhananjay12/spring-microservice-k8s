@@ -1,3 +1,8 @@
 spring:
   application:
     name: zuul-server
+  cloud:
+    config:
+      uri: ${SPRING_CLOUD_CONFIG_URI:http://localhost:8888}
+      retry:        initial-interval: 5000
+        max-attempts: 10
