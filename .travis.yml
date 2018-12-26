@@ -9,7 +9,7 @@ env:
 
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - mvn clean install -h
+  - mvn clean install -N
 
 script:
   - mvn clean install -Ddocker
