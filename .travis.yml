@@ -1,0 +1,15 @@
+sudo: required
+language: java
+services:
+  - docker
+
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - mvn clean install -Ddocker
+  - bash ./docker_push.sh
