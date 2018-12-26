@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: config-server
+  template:
+    metadata:
+      labels:
+        component: config-server
+    spec:
+      containers:
+        image: dhananjay12/config-server:latest
+        name: config-server
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
+        ports:
+        - containerPort: 8888

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: dhananjay12/config-server
+  ports:
+  - port: 8888
+    targetPort: 8888
