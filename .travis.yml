@@ -13,4 +13,3 @@ before_install:
 
 script:
   - mvn clean install -Ddocker
-  - bash ./docker_push.sh

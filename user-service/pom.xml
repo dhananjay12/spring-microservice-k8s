@@ -56,15 +56,26 @@
 						<extensions>true</extensions>
 						<configuration>
 							<verbose>true</verbose>
+							<authConfig>
+							<push>
+								<username>${DOCKER_USERNAME}</username>
+								<password>${DOCKER_PASSWORD}</password>
+							</push>
+							</authConfig>
 							<images>
 								<image>
 									<alias>${project.artifactId}</alias>
-									<name>dhananjay12/${project.artifactId}</name>
+									<name>dhananjay12/games-${project.artifactId}</name>
 									<build>
+										<tags>
+											<tag>${git.commit.id}</tag>
+										</tags>
 										<from>java:8-jre-alpine</from>
+										<!--<tags> <tag>${project.version}</tag> </tags> -->
 										<entryPoint>
 											<exec>
 												<args>java</args>
+												<!--<args>-Djava.security.egd=file:/dev/./urandom</args> -->
 												<args>-jar</args>
 												<args>/maven/${project.artifactId}-${project.version}.jar</args>
 											</exec>
@@ -82,6 +93,7 @@
 								<phase>post-integration-test</phase>
 								<goals>
 									<goal>build</goal>
+									<goal>push</goal>
 								</goals>
 							</execution>
 						</executions>
