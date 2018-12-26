@@ -43,6 +43,7 @@
 
 	
 	<modules>
+	    <module>config-server</module>
 		<module>eureka-server</module>
 		<module>contact-us-service</module>
 		<module>user-service</module>
