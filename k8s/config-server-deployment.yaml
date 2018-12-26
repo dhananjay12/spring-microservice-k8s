@@ -13,6 +13,9 @@ spec:
         component: configserver
     spec:
       containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Djava.security.egd=file:/dev/./urandom
         image: dhananjay12/config-server:latest
         name: configserver
         resources:
@@ -21,4 +24,4 @@ spec:
           limits:
             memory: "512Mi"
         ports:
-        - containerPort: 8888
+        - containerPort: 8080
