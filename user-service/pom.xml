@@ -65,7 +65,7 @@
 							<images>
 								<image>
 									<alias>${project.artifactId}</alias>
-									<name>dhananjay12/games-${project.artifactId}</name>
+									<name>dhananjay12/${project.artifactId}</name>
 									<build>
 										<tags>
 											<tag>${git.commit.id}</tag>
