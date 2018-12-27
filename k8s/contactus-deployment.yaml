@@ -12,6 +12,10 @@ spec:
       labels:
         component: contactus
     spec:
+      volumes:
+        - name: file-storage
+          persistentVolumeClaim:
+            claimName: file-persistent-volume-claim
       containers:
       - env:
         - name: JAVA_OPTS
@@ -31,3 +35,6 @@ spec:
             memory: "512Mi"
         ports:
         - containerPort: 8080
+        volumeMounts:
+            - name: file-storage
+              mountPath: /app/data
