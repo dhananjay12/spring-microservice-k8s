@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: eureka-cluster-ip-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     component: eureka
   ports:
