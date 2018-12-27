@@ -29,6 +29,8 @@ services:
       - "8100:8100"
   contactus:
     image: "dhananjay12/contact-us-service:latest"
+    volumes:
+      - ./:/app/data
     environment:
       - "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"
       - "SPRING_PROFILES_ACTIVE=default"
