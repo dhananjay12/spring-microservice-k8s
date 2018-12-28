@@ -4,7 +4,7 @@ metadata:
  name: file-persistent-volume-claim
 spec:
  accessModes:
-   - ReadWriteMany
+   - ReadOnlyMany
  resources:
    requests:
      storage: 100Mi
